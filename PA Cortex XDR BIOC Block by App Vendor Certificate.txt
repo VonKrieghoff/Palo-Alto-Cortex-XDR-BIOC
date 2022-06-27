@@ -1,0 +1,33 @@
+// Palo Alto Cortex XDR BIOC Block App by vendor Certificate
+// Example is created based on Notepad++
+
+
+
+// Get Signer Name
+// Find Application .exe file or any other executable file that is digitaly signed, right click on that file -> Properties -> Digital signatures -> Copy Name field, for Notepad++ that is "Notepad++".
+
+
+// Create BIOC Rulle
+// Detection Rulles -> BIOC -> +Add BIOC -> XQL Search, fill query field with script:
+
+
+
+
+dataset = xdr_data 
+| filter event_type = ENUM.LOAD_IMAGE and actor_process_signature_vendor = "Notepad++"
+
+
+// Save as BIOC
+// Fill required fields as u need, technicaly it does not matter how u fill those fields
+// hit OK
+
+
+// Add BIOC rulle to your restriction Profile
+// Right click on created BIOC rule -> Add to Restriction Profile -> Select restriction profile you whant to add to -> hit ADD.
+
+
+
+
+
+// Make Sure That in Restriction Profile Custom Prevention Rules are ENABLED.
+// Endpoints -> Policy Management -> Prifiles -> YOUR RESTRICTION POLICY -> Right Click -> Edit Profile -> Custom Prevention Rules -> Action Mode is set "Enabled", and your created policy is listed below.
